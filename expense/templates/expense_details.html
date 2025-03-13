@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Expense Details</title>
+    <style>
+        /* Resetting default margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and overall layout */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f1f3f4;
+            padding: 20px;
+            color: #202124;
+        }
+
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Expense Details Container */
+        #expense-details {
+            background-color: #1a73e83a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #5f6368;
+        }
+
+        /* Go Back Button */
+        button {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #165b8c;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Expense Details</h1>
+    <div id="expense-details">
+        <p><strong>Amount:</strong> ${{ expense.amount }}</p>
+        <p><strong>Category:</strong> {{ expense.category }}</p>
+        <p><strong>Date:</strong> {{ expense.date }}</p>
+        <p><strong>Description:</strong> {{ expense.description }}</p>
+    </div>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

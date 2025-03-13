@@ -1,0 +1,19 @@
+teraform concepts
+providers: plugins that interact with API
+resources: the infrastructure components you manage (e.g., files, servers)
+data sources: fetch info from external systems (e.g., API responses)
+state: condition of your deployment
+
+vim main.tf
+terraform init # initialise and sets up providers
+terraform plan # do a dry run to preview the changes
+terraform apply
+terraform destroy
+
+https://developer.hashicorp.com/terraform/install
+
+Basic HCL syntax
+blocks: define resources, providers, variables
+arguments: key-value pairs inside blocks
+expresssions: Dynamic values using ${}
+outputs

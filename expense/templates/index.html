@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Expense Tracker</title>
+    <style>
+        /* Resetting default margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and overall layout */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f1f3f4;
+            padding: 20px;
+            color: #202124;
+        }
+
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #5f6368;
+            margin-bottom: 10px;
+        }
+
+        /* Container for sections */
+        div {
+            margin-bottom: 30px;
+        }
+
+        /* Add Expense Form */
+        .form-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            width: calc(50% - 10px);
+            display: inline-block;
+        }
+
+        input[type="date"] {
+            width: calc(50% - 10px);
+            display: inline-block;
+        }
+
+        button {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #165b8c;
+        }
+
+        /* Total Expenses section */
+        .total-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #total {
+            font-size: 1em;
+            font-style: italic;
+            padding-top: 8px;
+        }
+
+        /* Expenses List Section */
+        .list-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Expense Tracker</h1>
+
+    <!-- Add Expense Form -->
+    <div>
+        <h2>Add Expense</h2>
+        <input type="number" id="amount" placeholder="Amount">
+        <input type="text" id="category" placeholder="Category">
+        <input type="date" id="date">
+        <input type="text" id="description" placeholder="Description">
+        <button onclick="addExpense()">Add Expense</button>
+    </div>
+
+    <!-- Total Expenses -->
+    <div>
+        <h2>Total Expenses</h2>
+        <button onclick="getTotal()">Get Total</button>
+        <p id="total"></p>
+    </div>
+
+    <!-- Display All Expenses -->
+    <div>
+        <h2>All Expenses</h2>
+        <ul id="expenses-list"></ul>
+    </div>
+
+    <script>
+        // Add Expense function
+        async function addExpense() {
+            const expense = {
+                id: Date.now(),
+                amount: parseFloat(document.getElementById("amount").value),
+                category: document.getElementById("category").value,
+                date: document.getElementById("date").value,
+                description: document.getElementById("description").value
+            };
+
+            const response = await fetch("/expenses", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(expense)
+            });
+            alert("Expense added!");
+            fetchExpenses();
+        }
+
+        // Get Total Expenses function
+        async function getTotal() {
+            const response = await fetch("/expenses/total");
+            const data = await response.json();
+            document.getElementById("total").textContent = `Total Expenses: $${data.total_expenses}`;
+        }
+
+        // Fetch and display all expenses
+        async function fetchExpenses() {
+            const response = await fetch("/expenses");
+            const expenses = await response.json();
+
+            // Clear the existing list
+            const expensesList = document.getElementById("expenses-list");
+            expensesList.innerHTML = '';
+
+            // Populate the list with all expenses
+            expenses.forEach(expense => {
+                const li = document.createElement("li");
+
+                // Create a link to view details
+                const link = document.createElement("a");
+                link.href = `/expense/${expense.id}`;  // Links to the new route
+                link.textContent = `${expense.amount} - ${expense.category} - ${expense.date}`;
+                link.style.textDecoration = "none";
+
+                li.appendChild(link);
+                expensesList.appendChild(li);
+            });
+        }
+
+        // Fetch and display all expenses when the page loads
+        window.onload = fetchExpenses;
+    </script>
+</body>
+
+</html>
