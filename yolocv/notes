@@ -1,3 +1,0 @@
-before yolo -> sliding window, rcnn, faster rcnn, fast rcnn
-yolo -> process entire image in single forward pass. combines localization and classification
-
