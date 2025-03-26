@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Ubuntu Mono', monospace;
+    }
+
+    body {
+      background-color: #1a1a1a;
+      padding: 2rem;
+      color: #e0e0e0;
+    }
+
+    .settings {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #2d2d2d;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      color: #8ab4f8;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #e0e0e0;
+      font-weight: 500;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 2.5rem 0.75rem 1rem;
+      background-color: #3d3d3d;
+      border: 1px solid #4d4d4d;
+      border-radius: 6px;
+      font-size: 1rem;
+      color: #e0e0e0;
+      transition: all 0.2s;
+    }
+
+    input[type="password"]:focus,
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #8ab4f8;
+      box-shadow: 0 0 0 2px rgba(138, 180, 248, 0.2);
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      color: #9aa0a6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+    }
+
+    .toggle-password:hover {
+      color: #e0e0e0;
+    }
+
+    .toggle-password .material-icons {
+      font-size: 1.25rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #saveKey {
+      background-color: #8ab4f8;
+      color: #1a1a1a;
+    }
+
+    #saveKey:hover {
+      background-color: #aecbfa;
+      transform: translateY(-1px);
+    }
+
+    #clearKey {
+      background-color: #3d3d3d;
+      color: #e0e0e0;
+      border: 1px solid #4d4d4d;
+    }
+
+    #clearKey:hover {
+      background-color: #4d4d4d;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .status {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 6px;
+      display: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status.success {
+      background-color: #1e4620;
+      color: #81c995;
+    }
+
+    .status.error {
+      background-color: #3c1e1e;
+      color: #f28b82;
+    }
+
+    .help-text {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #9aa0a6;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .help-text a {
+      color: #8ab4f8;
+      text-decoration: none;
+    }
+
+    .help-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings">
+    <h2>Gemini API Settings</h2>
+    <div class="form-group">
+      <label for="apiKey">API Key</label>
+      <div class="input-wrapper">
+        <input type="password" id="apiKey" placeholder="Enter your Gemini API key">
+        <button type="button" class="toggle-password" title="Toggle password visibility">
+          <span class="material-icons">visibility_off</span>
+        </button>
+      </div>
+      <div class="help-text">
+        <span class="material-icons" style="font-size: 1rem;">info</span>
+        Get your API key from the <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a>
+      </div>
+    </div>
+    <div class="button-group">
+      <button id="saveKey">
+        <span class="material-icons">save</span>
+        Save API Key
+      </button>
+      <button id="clearKey">
+        <span class="material-icons">delete</span>
+        Clear API Key
+      </button>
+    </div>
+    <div id="status" class="status"></div>
+  </div>
+  <script src="settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gemini Chat</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <h1>Gemini Chat</h1>
+      <div class="chat-header-buttons">
+        <button id="settingsButton" class="settings-button" title="Settings">
+          <span class="material-icons">settings</span>
+        </button>
+      </div>
+    </div>
+    <div id="messages" class="messages-container"></div>
+    <div class="input-container">
+      <textarea id="messageInput" placeholder="Type your message..." rows="1"></textarea>
+      <button id="sendButton" class="send-button" title="Send message">
+        <span class="material-icons">send</span>
+      </button>
+    </div>
+  </div>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
