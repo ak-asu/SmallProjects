@@ -1,0 +1,84 @@
+### **Google Cloud Platform (GCP)**
+
+- **Vertex AI**: Used for text generation using Google’s foundation models like `text-bison`.
+- **Cloud Run**: Fully managed serverless platform to deploy and scale the Streamlit app.
+- **Cloud Build**: Automates the container build process using the Dockerfile.
+- **Artifact Registry**: Stores the container images used for deployment.
+- **IAM & Admin**: Manages roles and permissions for the service account.
+
+---
+
+### **Service Account (IAM)**
+
+- Created with specific roles:
+    - `Vertex AI User`
+    - `Cloud Run Invoker`
+    - `Storage Object Viewer`
+- Used for securely authenticating and interacting with Vertex AI services from code.
+
+---
+
+### **Python**
+
+- Language used to implement the backend logic.
+- Connected to Vertex AI using the `google-cloud-aiplatform` library.
+- Used `streamlit` for rapid UI development.
+
+---
+
+### **Streamlit**
+
+- Lightweight Python framework for building interactive web apps.
+- Used to create the front-end interface for asking questions and displaying answers.
+
+---
+
+### **Docker**
+
+- Containerizes the entire application (code, dependencies, credentials).
+- Ensures that the app runs reliably in any environment.
+- Deployed the Docker image using GCP's Cloud Build and Cloud Run.
+
+---
+
+## ⚙️ Hands-On Walkthrough
+
+## Phase 1: Enable APIs
+
+1. Go to [https://console.cloud.google.com](https://console.cloud.google.com/)
+2. Create a new project: `campusgpt-workshop`
+3. In "APIs & Services" > "Library", enable the following:
+    - Vertex AI API
+    - Cloud Run Admin API
+    - Cloud Build API
+    - Artifact Registry API
+    - IAM Service Account Credentials API
+
+## Phase 2: Create Service Account
+
+1. Go to **IAM & Admin > Service Accounts**
+2. Create a new account:
+    - **Name**: `campusgpt-agent`
+    - **Roles**:
+        - Vertex AI User
+        - Cloud Run Invoker
+        - Storage Object Viewer
+3. Click **Create and Continue** > then **Done**
+4. Click on the account > **Manage Keys** > **Add Key** > **Create New Key**
+    - Format: JSON
+    - This downloads our .json file, rename it to `service_account.json`
+
+
+
+
+
+
+# Build the container
+gcloud builds submit --tag gcr.io/campusgpt-workshop/campusgpt
+
+# Deploy to Cloud Run
+gcloud run deploy campusgpt \
+  --image gcr.io/campusgpt-workshop/campusgpt \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated
