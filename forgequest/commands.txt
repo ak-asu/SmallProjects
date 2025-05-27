@@ -1,0 +1,32 @@
+mkdir forgeapp
+   45  cd forgeapp/
+   46  npm install @forge/cli
+   47  forge --version
+   48  npx forge --version
+   49  npx forge login
+   50  npx forge create my-first-quest
+   51  ls
+   52  npx forge create
+   53  ls
+   54  cd my-first-quest/
+   55  ls
+   56  npm forge deploy
+   57  npx forge deploy
+   58  npx forge install
+   59  ls
+   60  ls src/
+   61  cat src/frontend/index.jsx
+   62  cat manifest.yml
+   63  cd src/frontend/
+   64  nano index.jsx
+   65  npx forge deploy
+   66  cd ..
+   67  cd ..
+   68  npx forge deploy
+   69  npx forge tunnel
+   70  npx forge deploy
+   71  npx forge deploy
+   72  npx forge lint --fix
+   73  npx forge deploy
+   74  npx forge install --upgrade
+   75  npx forge logout

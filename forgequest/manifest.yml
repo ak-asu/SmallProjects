@@ -1,0 +1,22 @@
+modules:
+  confluence:spacePage:
+    - key: aptitude-space-page
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: Aptitude
+      route: aptitude
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+app:
+  runtime:
+    name: nodejs22.x
+  id: ari:cloud:ecosystem::app/e012848f-ce77-4645-932c-70aa0c51efe9
+permissions:
+  scopes:
+    - storage:app
