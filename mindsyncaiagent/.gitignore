@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.so
+
+# Virtualenv
+ms-venv/
+.venv/
+
+# Environment files
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# Mac
+.DS_Store
