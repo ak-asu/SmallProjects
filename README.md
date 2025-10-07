@@ -13,7 +13,23 @@ This repository contains a collection of small projects for personal and learnin
 
 ## Overview
 
+
 This is a collection of small projects that demonstrate various programming concepts, tools, or technologies. Each project is contained in its own directory with its specific documentation.
+
+## Project Descriptions
+
+- **basicterafform**: Simple Terraform configuration and provider setup examples.
+- **campusgpt**: Campus-focused chatbot using Python and Docker for FAQs and automation.
+- **expense**: Expense tracker web app with models and HTML templates.
+- **forgequest**: Node.js-based project with commands, data generation, and frontend components.
+- **FunTimerExtension**: Chrome extension for fun timers and snipping tool features.
+- **GeminiChatExtension**: Browser extension for Gemini-powered chat and side panel integration.
+- **jobapptracker**: Job application tracker built with React Native and Expo.
+- **mailautomate**: Python automation for Gmail tasks and email management.
+- **mindsyncaiagent**: AI agent framework with modules for classification, parsing, and scheduling.
+- **projectstory**: Vite/React project for story visualization and Tailwind CSS experimentation.
+- **SplitwiseAI**: AI-powered expense sharing and management app.
+- **yolocv**: Python scripts for object detection using YOLO models.
 
 ## Installation
 
